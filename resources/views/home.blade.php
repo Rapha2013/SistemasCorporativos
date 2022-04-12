@@ -3,11 +3,31 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <div class="card-header" style="text-align: center;">
+        <h3 class="card-title">Projeto Sistemas Corporativos</h3>
+    </div>
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- SELECT2 EXAMPLE -->
+            <div class="card card-default">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row" style="text-align: center !important;">
+                        <div class="form-group col-md-12" style="margin-bottom: 0;">
+                            <h1>Bem Vindo!</h1>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+    </section>
 @stop
 
 @section('css')
@@ -15,5 +35,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script>
+        console.log('Hi!');
+    </script>
 @stop

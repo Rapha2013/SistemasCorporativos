@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TesteController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -19,8 +20,8 @@ Route::get('/', function () {
     return redirect('login');
 });
 
-
-Route::get('/users', [TesteController::class, 'teste']);
+Route::get('/users', [UsuariosController::class, 'index']);
+Route::get('/users/lista', [UsuariosController::class, 'listar']);
 
 Auth::routes();
 

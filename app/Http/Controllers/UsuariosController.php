@@ -6,13 +6,19 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 
 
-class TesteController extends Controller
+class UsuariosController extends Controller
 {
-    public function teste()
+    public function index()
     {
-        print_r(json_encode(User::get()));
+        return view('usuarios.ListarUsuarios');
+    }
+
+    public function listar()
+    {
+        return response()->json(['data' => User::get()], 200);
     }
 }
