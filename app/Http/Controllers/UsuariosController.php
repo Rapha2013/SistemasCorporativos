@@ -19,6 +19,7 @@ class UsuariosController extends Controller
 
     public function listar()
     {
+
         return response()->json(['data' => User::get()], 200);
     }
 }

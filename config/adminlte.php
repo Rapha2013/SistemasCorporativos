@@ -45,9 +45,9 @@ return [
     |
     */
 
-    'logo' => 'Sistemas',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => 'VR Sistemas',
+    'logo_img' => 'vendor/adminlte/dist/img/erp.png',
+    'logo_img_class' => 'brand-image elevation-1',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
     'logo_img_alt' => 'AdminLTE',
@@ -227,13 +227,17 @@ return [
     'menu' => [
         // Navbar items:
         [
+            'type'         => 'darkmode-widget',
+            'topnav_right' => true,
+        ],
+        [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => false,
         ],
         [
             'type'         => 'fullscreen-widget',
-            'topnav_right' => true,
+            'topnav_right' => false,
         ],
 
         // Sidebar items:
@@ -241,15 +245,45 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'Procurar',
         ],
+        ['header' => 'Menu'],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'        => 'Usuários',
+            'icon'        => 'fas fa-fw fa-user',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar',
+                    'icon' => 'fas fa-caret-right',
+                    'url'  => '/users',
+                ],
+                [
+                    'text' => 'Listar',
+                    'icon' => 'fas fa-caret-right',
+                    'url'  => '/users',
+                ],
+                [
+                    'text' => 'Permissões',
+                    'icon' => 'fas fa-caret-right',
+                    'url'  => '/users',
+                ],
+            ]
+            // 'label'       => 4,
+            // 'label_color' => 'success',
         ],
         [
-            'text'        => 'Usuarios',
-            'url'         => '/users',
-            'icon'        => 'fas fa-fw fa-user',
+            'text'        => 'Estoque',
+            'icon'        => 'fas fa-fw fa-boxes',
+            'submenu' => [
+                [
+                    'text' => 'Cadastrar',
+                    'icon' => 'fas fa-caret-right',
+                    'url'  => '/users',
+                ],
+                [
+                    'text' => 'Listar',
+                    'icon' => 'fas fa-caret-right',
+                    'url'  => '/users',
+                ],
+            ]
             // 'label'       => 4,
             // 'label_color' => 'success',
         ],
