@@ -21,7 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/users', [UsuariosController::class, 'index']);
-Route::get('/users/lista', [UsuariosController::class, 'listar']);
+
+//Route::get('/users/lista', [UsuariosController::class, 'listar'])->middleware('auth:sanctum');
 
 Auth::routes();
 

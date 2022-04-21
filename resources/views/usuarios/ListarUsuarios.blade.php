@@ -46,7 +46,7 @@
                 destroy: true,
                 order: [0, 'asc'],
                 ajax: {
-                    url: `/users/lista`
+                    url: `api/users/lista`
                 },
                 columns: [{
                         data: "id",
