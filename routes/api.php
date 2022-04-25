@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,16 +21,28 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::post('/user/register', [UsuariosController::class, 'register']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/users/lista', [UsuariosController::class, 'listar']);
+    //-- User routes
+    Route::get('/users', [UsuariosController::class, 'listar'])->middleware('permission:read');
+    Route::put('/users/{id}', [UsuariosController::class, 'edit'])->middleware('permission:update');
+    Route::delete('/users/{id}', [UsuariosController::class, 'delete'])->middleware('permission:delete');
     Route::get('/user', function(Request $request){
         return $request->user();
     });
+
+    //-- Permission routes
+    Route::get('/permissions', [PermissionsController::class, 'listar']);
+    Route::post('/permissions/vincula', [PermissionsController::class, 'vincula']);
+    Route::post('/permissions/desvincula', [PermissionsController::class, 'desvincula']);
+
 });
 
+//-- EndPoint para registrar um novo usuario
+Route::post('/user/register', [UsuariosController::class, 'register'])->middleware('permission:create');
 
 
+//-- EndPoint para fazer login
 Route::post('/login', function (Request $request) {
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 
@@ -47,6 +60,8 @@ Route::post('/login', function (Request $request) {
     return response()->json('Usuário invalido', 401);
 });
 
+
+//-- EndPoint para fazer logout
 Route::post('/logout', function (Request $request) {
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
 

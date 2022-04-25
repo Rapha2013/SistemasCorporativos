@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -12,9 +13,7 @@ class Handler extends ExceptionHandler
      *
      * @var array<int, class-string<Throwable>>
      */
-    protected $dontReport = [
-        //
-    ];
+    protected $dontReport = [];
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
@@ -27,6 +26,8 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+
+
     /**
      * Register the exception handling callbacks for the application.
      *
@@ -34,6 +35,16 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+
+
+        $this->renderable(function (AuthenticationException $e, $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'Não autenticado.'
+                ], 401);
+            }
+        });
+
         $this->reportable(function (Throwable $e) {
             //
         });
