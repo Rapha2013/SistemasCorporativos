@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\MovementController;
 use App\Http\Controllers\PermissionsController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -31,15 +33,31 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
         return $request->user();
     });
 
-    //-- Permission routes
+    //-- Router Permissions
     Route::get('/permissions', [PermissionsController::class, 'listar']);
     Route::post('/permissions/vincula', [PermissionsController::class, 'vincula']);
     Route::post('/permissions/desvincula', [PermissionsController::class, 'desvincula']);
+    Route::post('/permissions/create', [PermissionsController::class, 'createPermissions']);
+    
+     //-- Router Products
+     Route::get('/products', [ProductController::class, 'listar']);
+     Route::get('/products/{id}', [ProductController::class, 'getProdutct']);
+    Route::post('/products', [ProductController::class, 'store']);
+    Route::put('/products/{id}', [ProductController::class, 'edit']);
 
+    //-- Router Type Movement
+    Route::get('/type/movement', [MovementController::class, 'getTypeMovement']);
+    Route::post('/type/movement', [MovementController::class, 'setTypeMovement']);
+
+
+     //-- Router Movement
+     Route::get('/movement', [MovementController::class, 'listar']);
+     Route::post('/movement', [MovementController::class, 'store']);
 });
 
+
 //-- EndPoint para registrar um novo usuario
-Route::post('/user/register', [UsuariosController::class, 'register'])->middleware('permission:create');
+Route::post('/user/register', [UsuariosController::class, 'register']);
 
 
 //-- EndPoint para fazer login

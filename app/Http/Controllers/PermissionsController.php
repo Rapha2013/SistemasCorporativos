@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+date_default_timezone_set('America/Sao_Paulo');
+
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -12,7 +14,6 @@ use Illuminate\Auth\Access\AuthorizationException;
 
 class PermissionsController extends Controller
 {
-
     
     public function listar()
     {
@@ -81,4 +82,13 @@ class PermissionsController extends Controller
 
         return response()->json($user->revokePermissionTo($request->permission), 200);
     }
+
+    public function createPermissions(Request $request)
+    {
+
+        $permission = Permission::create(['name' => $request->permission]);
+
+        return response()->json($permission, 200);
+    }
+
 }
