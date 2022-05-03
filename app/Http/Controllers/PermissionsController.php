@@ -60,26 +60,6 @@ class PermissionsController extends Controller
             return response()->json(['mensagem' => 'Usuário não tem a permissão'], 200);
         }
 
-
-        // $user = User::find($id);
-
-
-        // $user->assignRole('writer');
-
-        // $user->removeRole('writer');
-
-        // Permission::create(['name' => 'create']);
-        // Permission::create(['name' => 'update']);
-
-        // Permission::create(['name' => 'delete']);
-
-        // $user->givePermissionTo($permission);
-
-        // $role = Role::create(['name' => 'writer']);
-
-        // $permissions = Permission::where('name', 'celete')->delete();
-
-
         return response()->json($user->revokePermissionTo($request->permission), 200);
     }
 

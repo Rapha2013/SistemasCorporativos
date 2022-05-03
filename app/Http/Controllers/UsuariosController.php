@@ -100,29 +100,4 @@ class UsuariosController extends Controller
         return response(['Mensagem' => 'Usuário desativado com sucesso!'], 200);
     }
 
-    public function teste($id)
-    {
-
-        $user = User::find($id);
-
-
-        // $user->revokePermissionTo('read');
-
-        // $user->assignRole('writer');
-
-        // $user->removeRole('writer');
-
-        // Permission::create(['name' => 'create']);
-        // Permission::create(['name' => 'update']);
-
-        Permission::create(['name' => 'delete']);
-
-        // $user->givePermissionTo($permission);
-
-        // $role = Role::create(['name' => 'writer']);
-
-        // $permissions = Permission::where('name', 'celete')->delete();
-
-        print_r($user);
-    }
 }
