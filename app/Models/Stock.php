@@ -9,15 +9,6 @@ class Stock extends Model
 {
     use HasFactory;
 
-     /**
-     * the Id associated with the partnert 
-     *
-     * @var int
-     */
-
-
-    public $timestamps = false;
-
     /**
      * The table associated with the model.
      *
@@ -34,7 +25,9 @@ class Stock extends Model
     protected $fillable = [
         'id',
         'product_id',
-        'quantity'
+        'quantity',
+        'signal',
+        'source' 
     ];
 
 }

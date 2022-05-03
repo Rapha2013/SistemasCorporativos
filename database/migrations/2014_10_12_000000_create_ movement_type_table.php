@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('movement_type', function (Blueprint $table) {
             $table->id();
-            $table->string('category')->nullable(false);
+            $table->string('description')->nullable(false);
             $table->string('type')->nullable(false);
         });
     }

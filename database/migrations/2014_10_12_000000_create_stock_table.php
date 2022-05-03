@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained('product');
             $table->integer('quantity')->nullable(false);
+            $table->string('signal')->nullable(false);
+            $table->string('source')->nullable(false);
+            $table->timestamps();
         });
     }
 

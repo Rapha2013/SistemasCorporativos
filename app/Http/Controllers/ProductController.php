@@ -19,7 +19,7 @@ class ProductController extends Controller
     
     public function listar()
     {
-
+        
         $lista = Product::leftJoin('Stock', 'Product.id', '=', 'Stock.product_id')->selectRaw("Product.*, Stock.quantity")->get();
 
         return response()->json(['lista' => $lista], 200);

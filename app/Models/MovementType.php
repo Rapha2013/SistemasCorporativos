@@ -32,7 +32,7 @@ class MovementType extends Model
      */
     protected $fillable = [
         'id',
-        'category',
+        'description',
         'type'
     ];
 }
