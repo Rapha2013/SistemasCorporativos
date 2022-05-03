@@ -3,6 +3,7 @@
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SectorController;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,11 +19,6 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     //-- User routes
@@ -53,7 +49,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
      //-- Router Movement
      Route::get('/movement', [MovementController::class, 'listar']);
      Route::post('/movement', [MovementController::class, 'store']);
+
+     
 });
+
+//-- Router Sector
+Route::get('/sector', [SectorController::class, 'listar']);
+Route::post('/sector', [SectorController::class, 'store']);
+Route::put('/sector/{id}', [SectorController::class, 'edit']);
 
 
 //-- EndPoint para registrar um novo usuario

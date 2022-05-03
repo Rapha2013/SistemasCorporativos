@@ -29,6 +29,7 @@ class UsuariosController extends Controller
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8'],
+                'id_sector' => ['required', 'int', 'min:1'],
                 'situation' => ['required', 'string', 'max:1']
             ],
         );
@@ -37,6 +38,7 @@ class UsuariosController extends Controller
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
+            'id_sector' => $fields['id_sector'],
             'situation' => $fields['situation']
         ]);
 
@@ -50,7 +52,7 @@ class UsuariosController extends Controller
 
     public function listar()
     {
-        return response()->json(['lista' => User::get()], 200);
+        return response()->json(['lista' => User::join('sector', 'users.id_sector', 'sector.id')->selectRaw("users.*, sector.description as desc_sector")->get()], 200);
     }
 
     public function edit($id, Request $request)
