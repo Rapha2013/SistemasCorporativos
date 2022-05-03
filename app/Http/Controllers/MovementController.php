@@ -76,7 +76,15 @@ class MovementController extends Controller
             [
                 'mensagem' => $response,
                 'produto' =>
-                Product::leftJoin('Stock', 'Product.id', '=', 'Stock.product_id')->selectRaw("Product.*, Stock.quantity")->where('Product.id', $fields['product_id'])->first()
+                 Product::leftJoin('Stock', 'Product.id', '=', 'Stock.product_id')
+                        ->selectRaw("Product.*,
+                                    (SELECT SUM(CASE 
+                                    WHEN Stock.signal = 'S' 
+                                        THEN -quantity
+                                    ELSE quantity
+                                    END) FROM Stock WHERE Stock.product_id = Product.id) AS quantity_total")
+                        ->distinct()
+                        ->get()
             ],
             200
         );

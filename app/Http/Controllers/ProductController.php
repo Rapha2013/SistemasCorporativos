@@ -20,9 +20,17 @@ class ProductController extends Controller
     public function listar()
     {
         
-        $lista = Product::leftJoin('Stock', 'Product.id', '=', 'Stock.product_id')->selectRaw("Product.*, Stock.quantity")->get();
+        $lista = Product::leftJoin('Stock', 'Product.id', '=', 'Stock.product_id')
+                        ->selectRaw("Product.*,
+                                    (SELECT SUM(CASE 
+                                    WHEN Stock.signal = 'S' 
+                                        THEN -quantity
+                                    ELSE quantity
+                                    END) FROM Stock WHERE Stock.product_id = Product.id) AS quantity_total")
+                        ->distinct()
+                        ->get();
 
-        return response()->json(['lista' => $lista], 200);
+        return response()->json(['products' => $lista], 200);
     }
 
     public function store(Request $request)
