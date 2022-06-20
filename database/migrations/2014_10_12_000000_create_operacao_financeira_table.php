@@ -14,26 +14,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('movement_type', function (Blueprint $table) {
+        Schema::create('operacao_financeira', function (Blueprint $table) {
             $table->id();
-            $table->string('description')->nullable(false);
-            $table->string('type')->nullable(false);
+            $table->string('description')->nullable();
         });
 
-
         // Insert some stuff
-        DB::table('movement_type')->insert(
+        DB::table('operacao_financeira')->insert(
             array(
-                'description' => 'Produto',
-                'type' => 'S'
+                'description' => 'Contas a Pagar',
             )
         );
 
         // Insert some stuff
-        DB::table('movement_type')->insert(
+        DB::table('operacao_financeira')->insert(
             array(
-                'description' => 'Produto',
-                'type' => 'E'
+                'description' => 'Contas a receber',
             )
         );
     }
@@ -45,6 +41,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movement_type');
+        Schema::dropIfExists('operacao_financeira');
     }
 };

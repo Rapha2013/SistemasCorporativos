@@ -14,24 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sector', function (Blueprint $table) {
+        Schema::create('lancamento_financeiro', function (Blueprint $table) {
             $table->id();
-            $table->string('description')->nullable();
+            $table->string('descricao');
+            $table->string('sinal');
         });
 
-        // Insert some stuff
-        DB::table('sector')->insert(
-            array(
-                'description' => 'TI',
-            )
-        );
-
-        // Insert some stuff
-        DB::table('sector')->insert(
-            array(
-                'description' => 'Marketing',
-            )
-        );
     }
 
     /**
@@ -41,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sector');
+        Schema::dropIfExists('lancamento_financeiro');
     }
 };

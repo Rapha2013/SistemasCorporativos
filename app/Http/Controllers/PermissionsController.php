@@ -65,7 +65,6 @@ class PermissionsController extends Controller
 
     public function createPermissions(Request $request)
     {
-
         $permission = Permission::create(['name' => $request->permission]);
 
         return response()->json($permission, 200);

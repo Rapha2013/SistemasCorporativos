@@ -14,24 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sector', function (Blueprint $table) {
+        Schema::create('lancamento_titulo', function (Blueprint $table) {
             $table->id();
-            $table->string('description')->nullable();
+            $table->foreignId('id_titulo')->constrained('titulo');
+            $table->decimal('vl_lancamento', 14,2)->nullable(false);
+            $table->foreignId('id_lancamento_financeiro')->constrained('lancamento_financeiro');
+            $table->timestamp('dt_lancamento');
+            $table->foreignId('id_user')->constrained('users');
         });
 
-        // Insert some stuff
-        DB::table('sector')->insert(
-            array(
-                'description' => 'TI',
-            )
-        );
-
-        // Insert some stuff
-        DB::table('sector')->insert(
-            array(
-                'description' => 'Marketing',
-            )
-        );
     }
 
     /**
@@ -41,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sector');
+        Schema::dropIfExists('lancamento_titulo');
     }
 };
