@@ -22,8 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 //Endpoint Titulos
 Route::post('/titulos/create', [ContasController::class, 'createTitulo']);
-Route::get('/titulos/listar', [ContasController::class, 'listarTitulo']);
+Route::get('/titulos/listar', [ContasController::class, 'listar']);
+Route::get('/titulos/listar/{id}', [ContasController::class, 'getTitulo']);
 
+//Endpoint Lancamentos Titulos
+Route::get('/titulos/lancamento/listar', [ContasController::class, 'listarTitulo']);
+Route::post('/titulos/lancamento/criar', [ContasController::class, 'createLancamento']);
+Route::get('/titulos/lancamento/listar/{id}', [ContasController::class, 'getLancamento']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     //-- User routes

@@ -47,4 +47,18 @@ class Titulo extends Model
         'vl_multa_dia',
         'id_conta_caixa'
     ];
+
+
+    public function lancamentoTitulo(){
+        return $this->hasMany(Lancamento_titulo::class, 'id_titulo', 'id');
+    }
+
+    public function cliente(){
+        return $this->hasOne(Cliente::class, 'id', 'id_cliente_fornecedor');
+    }
+
+    public function operacaoFinanceira(){
+        return $this->hasOne(Operacao_financeira::class, 'id', 'id_operacao_financeira');
+    }
+
 }

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lancamento_titulo extends Model
+class Operacao_financeira extends Model
 {
     use HasFactory;
 
@@ -23,7 +23,7 @@ class Lancamento_titulo extends Model
      * @var string
      */
 
-    protected $table = 'lancamento_titulo';
+    protected $table = 'operacao_financeira';
 
     /**
      * The attributes that are mass assignable.
@@ -32,19 +32,8 @@ class Lancamento_titulo extends Model
      */
     protected $fillable = [
         'id',
-        'id_titulo',
-        'vl_lancamento',
-        'id_lancamento_financeiro',
-        'dt_lancamento',
-        'id_user',
+        'description',
     ];
 
-    
-    public function user(){
-        return $this->hasOne(User::class, 'id', 'id_user');
-    }
 
-    public function lancamentoFinanceiro(){
-        return $this->hasOne(Lancamento_financeiro::class, 'id', 'id_lancamento_financeiro');
-    }
 }
