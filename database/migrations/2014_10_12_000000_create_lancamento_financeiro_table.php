@@ -20,6 +20,22 @@ return new class extends Migration
             $table->string('sinal');
         });
 
+        // Insert some stuff
+        DB::table('lancamento_financeiro')->insert(
+            array(
+                'descricao' => 'Lançamento de contas a Pagar',
+                'sinal' => 'C'
+            )
+        );
+
+        // Insert some stuff
+        DB::table('lancamento_financeiro')->insert(
+            array(
+                'descricao' => 'Lançamento de contas a Receber',
+                'sinal' => 'D'
+            )
+        );
+
     }
 
     /**

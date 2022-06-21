@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContasController;
 use App\Http\Controllers\MovementController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\ProductController;
@@ -19,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+//Endpoint Titulos
+Route::post('/titulos/create', [ContasController::class, 'createTitulo']);
+Route::get('/titulos/listar', [ContasController::class, 'listarTitulo']);
+
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     //-- User routes
