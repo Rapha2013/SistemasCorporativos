@@ -36,6 +36,22 @@ return new class extends Migration
             )
         );
 
+        // Insert some stuff
+        DB::table('lancamento_financeiro')->insert(
+            array(
+                'descricao' => 'Liquidação',
+                'sinal' => 'L'
+            )
+        );
+
+        // Insert some stuff
+        DB::table('lancamento_financeiro')->insert(
+            array(
+                'descricao' => 'Pagamento Parcial',
+                'sinal' => 'P'
+            )
+        );
+
     }
 
     /**

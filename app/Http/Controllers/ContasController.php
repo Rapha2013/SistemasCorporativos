@@ -126,7 +126,10 @@ class ContasController extends Controller
             return response()->json('Erro ao lancar o titulo!', 402);
         }
 
-        $totalLacamentoTitulo = $lancamento_titulo->selectRaw("SUM(vl_lancamento) AS qtd_lancados")->where('id_titulo', $request->id_titulo)->where('id_lancamento_financeiro', $request->id_lancamento_financeiro)->get()[0];
+        $totalLacamentoTitulo = $lancamento_titulo->selectRaw("SUM(vl_lancamento) AS qtd_lancados")
+                                                  ->where('id_titulo', $request->id_titulo)
+                                                  ->where('id_lancamento_financeiro', $request->id_lancamento_financeiro)
+                                                  ->get()[0];
 
         if ($totalLacamentoTitulo->qtd_lancados != null && $totalLacamentoTitulo->qtd_lancados == $titulo->vl_titulo) {
 
@@ -166,21 +169,7 @@ class ContasController extends Controller
     public function getTitulo(Titulo $titulos, $id)
     {
 
-        $titulo = $titulos->where('id', $id)->with(['operacaoFinanceira', 'lancamentoTitulo.lancamentoFinanceiro', 'lancamentoTitulo.user', 'cliente'])->get();
-
-        // $titulo = $titulos->join('operacao_financeira', 'titulo.id_operacao_financeira', 'operacao_financeira.id')
-        //                   ->join('cliente', 'titulo.id_cliente_fornecedor', 'cliente.id')
-        //                   ->selectRaw("
-        //                   titulo.id, 
-        //                   descricao, 
-        //                   dt_lancamento,
-        //                   dt_vencimento,
-        //                   dt_liquidacao,
-        //                   operacao_financeira.description as operacao,
-        //                   cliente.name as nome_cliente
-        //                   ")
-        //                   ->where('titulo.id', $id)
-        //                   ->get();
+        $titulo = $titulos->where('id', $id)->with(['operacaoFinanceira', 'cliente', 'lancamentoTitulo.lancamentoFinanceiro', 'lancamentoTitulo.user'])->get();
 
         return response()->json($titulo, 200);
     }
